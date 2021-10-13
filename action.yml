@@ -2,24 +2,14 @@ name: 'push'
 description: 'Push to repo'
 author: 'Mansi Ayer'
 branding:
-  icon: eye
+  icon: ant
   color: black
 inputs:
-  script:
-    description: 'The path to the test-script to run, within the repository.'
-    default: '.github/run-tests.sh'
+  token:
+    description: ''
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-      - ${{ inputs.script }}
+  using: 'ubuntu-latest'
 
 
 
 
-run: |
-          git config --local user.name "${GITHUB_ACTOR}"
-          git config --local user.email "42694815+${GITHUB_ACTOR}@users.noreply.github.com"
-          git add .
-          git commit -m "updating readme stars"
-          git push 
