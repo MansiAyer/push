@@ -4,5 +4,13 @@
 
 Example usage:
 ```
-
+steps:
+- uses: MansiAyer/push@main
+  with:
+    script: update.py
+    actions-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+<hr>
+
+WIP
