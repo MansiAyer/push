@@ -1,0 +1,13 @@
+name: 'push'
+description: 'pass a script to make changes and push to repo'
+author: 'MansiAyer'
+branding:
+  icon: edit-3
+  color: red
+inputs:
+  actions_token:
+    description: 'Actions secret token for authentication'
+    required: true
+  script:
+    description: 'Script to make changes. Empty field will only push'
+    required: false
