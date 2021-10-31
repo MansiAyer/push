@@ -1,14 +1,35 @@
 name: 'push'
-description: 'Push to repo'
-author: 'Mansi Ayer'
+description: 'pass a script to make changes and push to repo'
+author: 'MansiAyer'
 branding:
-  icon: ant
-  color: black
+  icon: edit-3
+  color: red
 inputs:
-  token:
-    description: ''
+  actions_token:
+    description: 'Actions secret token for authentication'
+    required: true
+  script:
+    description: 'Script to make changes. Empty field will only push'
+    required: false
 runs:
   using: 'ubuntu-latest'
+  steps:
+    - name: Install Dependencies 
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        pip install PyGithub
+    - name: Install Python dependencies
+      uses: py-actions/py-dependency-install@v2
+      with:
+        path: "requirements.txt"
+    - name: run script 
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        pip install PyGithub
+    
+
 
 
 
