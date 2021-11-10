@@ -11,16 +11,19 @@ inputs:
   repository:
     description: 'Repository name with owner. For example, actions/checkout'
     default: ${{ github.repository }}
+    required: false
   actor:
     description: 'Owner username. For example, actions'
     default: ${{ github.actor }}
+    required: false
   email:
-      description: 'Email ID to be used for git config'
-      required: true
+    description: 'Email ID to be used for git config'
+    required: true
 secrets:
   actions_token:
       description: 'Actions secret token for authentication'
-      default: ${{ github.token }}
+      default: ${{ secrets.GITHUB_TOKEN }}
+      required: false
       #required: true
       
 runs:
