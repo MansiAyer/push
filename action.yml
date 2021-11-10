@@ -10,15 +10,16 @@ inputs:
     required: false
   
       
-runs:
-  using: 'ubuntu-latest'
-  steps:
-    - name: test
-      env:
-        GITHUB_ACTOR: ${{ github.actor }}
-      run: |
-        echo ${GITHUB_EMAIL}
-        echo ${GITHUB_ACTOR}
+jobs:
+  test:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: test
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          echo ${GITHUB_EMAIL}
+          echo ${GITHUB_ACTOR}
       
     
         
