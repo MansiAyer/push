@@ -5,12 +5,24 @@ branding:
   icon: edit-3
   color: red
 inputs:
-  #actions_token:
-  #  description: 'Actions secret token for authentication'
-  #  required: true
   script:
     description: 'Script to make changes. Empty field will only push'
     required: false
+  repository:
+    description: 'Repository name with owner. For example, actions/checkout'
+    default: ${{ github.repository }}
+  actor:
+    description: 'Owner username. For example, actions'
+    default: ${{ github.actor }}
+  email:
+      description: 'Email ID to be used for git config'
+      required: true
+secrets:
+  actions_token:
+      description: 'Actions secret token for authentication'
+      default: ${{ github.token }}
+      #required: true
+      
 runs:
   using: 'ubuntu-latest'
   steps:
@@ -23,18 +35,20 @@ runs:
     #using https://docs.github.com/en/actions/learn-github-actions/environment-variables
     - name: run script and push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_ACTOR: ${GITHUB_ACTOR}
-        GITHUB_REPO: ${GITHUB_REPOSITORY}
+        GITHUB_TOKEN: ${{ secrets.actions_token }}
+        GITHUB_ACTOR: ${{ inputs.actor }}
+        GITHUB_REPO: ${{ inputs.repository )}
+        SCRIPT_PATH: ${{ inputs.script }}
+        ACTOR_MAIL: ${{ inputs.email }}
       run: |
         git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/
-        cd ${GITHUB_ACTOR}/update/ 
+        cd ${SCRIPT_PATH} 
         python main.py ${GITHUB_TOKEN}
         cd ..
         git config user.name "${GITHUB_ACTOR}"
-        git config user.email "42694815+${GITHUB_ACTOR}@users.noreply.github.com"
+        git config user.email "${ACTOR_EMAIL}"
         git add .
-        git commit -m "updating readme stars"
+        git commit -m "auto-updating repo"
         git push
         
     
