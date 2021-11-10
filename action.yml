@@ -11,7 +11,7 @@ inputs:
   actor:
     description: 'actor'
     required: false
-    default: ${{ github.actor }}
+    default: ${GITHUB_ACTOR}
   
       
 jobs:
