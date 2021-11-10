@@ -32,27 +32,21 @@ runs:
     - name: Setup Python
       uses: actions/setup-python@v2
     
-    
-    #using https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
-    #using https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
-    #using https://docs.github.com/en/actions/learn-github-actions/environment-variables
-    - name: run script and push
+    - name: testing reuse workflow
       env:
-        GITHUB_TOKEN: ${{ secrets.actions_token }}
+        GITHUB_TOKEN: ${{ secrets.token }}
+        GITHUB_EMAIL: ${{ inputs.email }}
         GITHUB_ACTOR: ${{ inputs.actor }}
-        GITHUB_REPO: ${{ inputs.repository }}
-        SCRIPT_PATH: ${{ inputs.script }}
-        ACTOR_MAIL: ${{ inputs.email }}
-      run: |
+      runs: |
         git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/
-        cd ${SCRIPT_PATH} 
-        python main.py ${GITHUB_TOKEN}
-        cd ..
+        python ${SCRIPT_PATH}
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${ACTOR_EMAIL}"
         git add .
         git commit -m "auto-updating repo"
         git push
+      
+    
         
     
 
