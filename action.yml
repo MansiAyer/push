@@ -37,7 +37,7 @@ runs:
         GITHUB_TOKEN: ${{ secrets.token }}
         GITHUB_EMAIL: ${{ inputs.email }}
         GITHUB_ACTOR: ${{ inputs.actor }}
-      runs: |
+      run: |
         git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/
         python ${SCRIPT_PATH}
         git config user.name "${GITHUB_ACTOR}"
