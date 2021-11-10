@@ -37,7 +37,7 @@ runs:
       env:
         GITHUB_TOKEN: ${{ secrets.actions_token }}
         GITHUB_ACTOR: ${{ inputs.actor }}
-        GITHUB_REPO: ${{ inputs.repository )}
+        GITHUB_REPO: ${{ inputs.repository }}
         SCRIPT_PATH: ${{ inputs.script }}
         ACTOR_MAIL: ${{ inputs.email }}
       run: |
