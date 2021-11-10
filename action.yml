@@ -13,13 +13,7 @@ inputs:
 runs:
   using: 'ubuntu-latest'
   steps:
-    - name: Setup Python
-      uses: actions/setup-python@v2
-    
-    #using https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
-    #using https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
-    #using https://docs.github.com/en/actions/learn-github-actions/environment-variables
-    - name: run script and push
+    - name: test
       env:
         GITHUB_ACTOR: ${{ github.actor }}
       run: |
