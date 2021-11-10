@@ -32,7 +32,10 @@ runs:
     - name: Setup Python
       uses: actions/setup-python@v2
     
-    - name: testing reuse workflow
+    #using https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
+    #using https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
+    #using https://docs.github.com/en/actions/learn-github-actions/environment-variables
+    - name: run script and push
       env:
         GITHUB_TOKEN: ${{ secrets.token }}
         GITHUB_EMAIL: ${{ inputs.email }}
