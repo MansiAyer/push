@@ -8,6 +8,10 @@ inputs:
   script:
     description: 'Script to make changes. Empty field will only push'
     required: false
+  actor:
+    description: 'actor'
+    required: false
+    default: ${{ github.actor }}
   
       
 jobs:
@@ -16,9 +20,9 @@ jobs:
     steps:
       - name: test
         env:
-          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_ACTOR: ${{ inputs.actor }}
         run: |
-          echo ${GITHUB_EMAIL}
+          echo testing
           echo ${GITHUB_ACTOR}
       
     
