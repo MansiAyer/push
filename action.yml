@@ -8,23 +8,7 @@ inputs:
   script:
     description: 'Script to make changes. Empty field will only push'
     required: false
-  repository:
-    description: 'Repository name with owner. For example, actions/checkout'
-    default: ${{ github.repository }}
-    required: false
-  actor:
-    description: 'Owner username. For example, actions'
-    default: ${{ github.actor }}
-    required: false
-  email:
-    description: 'Email ID to be used for git config'
-    required: true
-secrets:
-  actions_token:
-      description: 'Actions secret token for authentication'
-      default: ${{ secrets.GITHUB_TOKEN }}
-      required: false
-      #required: true
+  
       
 runs:
   using: 'ubuntu-latest'
@@ -37,17 +21,10 @@ runs:
     #using https://docs.github.com/en/actions/learn-github-actions/environment-variables
     - name: run script and push
       env:
-        GITHUB_TOKEN: ${{ secrets.token }}
-        GITHUB_EMAIL: ${{ inputs.email }}
-        GITHUB_ACTOR: ${{ inputs.actor }}
+        GITHUB_ACTOR: ${{ github.actor }}
       run: |
-        git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/
-        python ${SCRIPT_PATH}
-        git config user.name "${GITHUB_ACTOR}"
-        git config user.email "${ACTOR_EMAIL}"
-        git add .
-        git commit -m "auto-updating repo"
-        git push
+        echo ${GITHUB_EMAIL}
+        echo ${GITHUB_ACTOR}
       
     
         
